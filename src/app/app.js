@@ -14,10 +14,14 @@ var ABsplit = function() {
       color = 'blue';
     }
 
+    $.cookie('redVSblue', color, { expires: 1, path: '/' });
+    $.cookie('red', 0);
+    $.cookie('blue', 0);
   }
 
-  $.cookie('redVSblue', color, { expires: 1, path: '/' });
   display(color);
+  increment(color);
+  console.log('cookie', $.cookie());
   return;
 }
 
@@ -29,6 +33,12 @@ var display = function(color) {
     $('body').append('<img style="width: 20%" src="' + blueball + '">');
   }
 
+}
+
+var increment = function(color) {
+  var count = $.cookie(color);
+  count++;
+  $.cookie(color, count);
 }
 
 
