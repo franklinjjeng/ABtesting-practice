@@ -2,6 +2,7 @@ var blueball = 'https://img.clipartfest.com/4a1780a63f0c67b9d33a474555fa28da_blu
 var redball = 'https://img.clipartfest.com/c136f711624671ef0876f2edec9980ae_red-ball-image-red-ball-box-clipart_2400-2400.png';
 var url = 'http://127.0.0.1:3000/';
 var page = 'home';
+var records;
 
 var ABsplit = function() {
   var color;
@@ -53,7 +54,10 @@ var updateRecords = function(data) {
     type: 'POST',
     url: url + 'api/updateRecord',
     data: {data: data},
-    dataType: 'json'
+    dataType: 'json',
+    success: function(res) {
+      records = res;
+    }
   });
 }
 
@@ -62,7 +66,7 @@ var retrieveRecords = function() {
     type: 'GET',
     url: url + 'api/getRecords',
     success: function(res) {
-      console.log('post request success', res);
+      records = res;
     }
   });
 }
@@ -87,13 +91,20 @@ var render = function(page) {
     ABsplit();
   } else if (page === 'report') {
     clearPage();
-    $('body').append('<div class="report">TEST</div>');
+    displayReport();
   }
 }
 
 var clearPage = function () {
   $('.ball').remove();
   $('.report').remove();
+}
+
+var displayReport = function() {
+  for (var key in records) {
+    var row = key + ' - ' + JSON.stringify(records[key]);
+    $('body').append('<div class="report">' + row + '</div>');
+  }
 }
 
 render(page);
