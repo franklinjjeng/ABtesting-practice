@@ -66,22 +66,20 @@ var retrieveRecords = function() {
     type: 'GET',
     url: url + 'api/getRecords',
     success: function(res) {
-      records = res;
+      records = JSON.parse(res);
     }
   });
 }
 
 $( ".home-menu" ).click(function() {
-  console.log('home button clicked');
   page = 'home';
   render(page);
 });
 
 $( ".report-menu" ).click(function() {
-  console.log('report button clicked');
+  retrieveRecords();
   page = 'report';
   render(page);
-  retrieveRecords();
 });
 
 var render = function(page) {
