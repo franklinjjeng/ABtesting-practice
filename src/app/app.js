@@ -106,4 +106,3 @@ var displayReport = function() {
 }
 
 render(page);
-
