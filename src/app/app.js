@@ -5,8 +5,6 @@ var ABsplit = function() {
   var color = $.cookie('redVSblue');
   if (color) {
     console.log('cookie found', color);
-    display(color);
-    return;
   } else {
     console.log('no cookie found, assigning color');
     var random = Math.random();
@@ -16,9 +14,10 @@ var ABsplit = function() {
       color = 'blue';
     }
 
-    display(color);
   }
 
+  $.cookie('redVSblue', color, { expires: 1, path: '/' });
+  display(color);
   return;
 }
 
@@ -31,6 +30,8 @@ var display = function(color) {
   }
 
 }
+
+
 
 ABsplit();
 
