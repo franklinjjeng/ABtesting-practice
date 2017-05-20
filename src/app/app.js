@@ -1,6 +1,7 @@
 var blueball = 'https://img.clipartfest.com/4a1780a63f0c67b9d33a474555fa28da_blue-ball-image-blue-ball-clipart_2400-2400.png';
 var redball = 'https://img.clipartfest.com/c136f711624671ef0876f2edec9980ae_red-ball-image-red-ball-box-clipart_2400-2400.png';
 var url = 'http://127.0.0.1:3000/';
+var page = 'home';
 
 var ABsplit = function() {
   var color;
@@ -34,9 +35,9 @@ var ABsplit = function() {
 var display = function(color) {
 
   if (color === 'red') {
-    $('body').append('<img style="width: 20%" src="' + redball + '">');
+    $('.ball').append('<img src="' + redball + '">');
   } else if (color === 'blue') {
-    $('body').append('<img style="width: 20%" src="' + blueball + '">');
+    $('.ball').append('<img src="' + blueball + '">');
   }
 
 }
@@ -52,13 +53,48 @@ var updateRecords = function(data) {
     type: 'POST',
     url: url + 'api/updateRecord',
     data: {data: data},
-    dataType: 'json',
+    dataType: 'json'
+  });
+}
+
+var retrieveRecords = function() {
+  $.ajax({
+    type: 'GET',
+    url: url + 'api/getRecords',
     success: function(res) {
       console.log('post request success', res);
     }
   });
 }
 
+$( ".home-menu" ).click(function() {
+  console.log('home button clicked');
+  page = 'home';
+  render(page);
+});
 
-ABsplit();
+$( ".report-menu" ).click(function() {
+  console.log('report button clicked');
+  page = 'report';
+  render(page);
+  retrieveRecords();
+});
+
+var render = function(page) {
+  if (page === 'home') {
+    clearPage();
+    $('body').append('<div class="ball"></div>');
+    ABsplit();
+  } else if (page === 'report') {
+    clearPage();
+    $('body').append('<div class="report">TEST</div>');
+  }
+}
+
+var clearPage = function () {
+  $('.ball').remove();
+  $('.report').remove();
+}
+
+render(page);
 

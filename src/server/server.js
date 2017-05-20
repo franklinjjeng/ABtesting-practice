@@ -20,10 +20,16 @@ app.post('/api/updateRecord', function(req, res) {
   res.send(JSON.stringify(records));
 });
 
+app.get('/api/getRecords', function(req, res) {
+  console.log('GET request on /api/updateRecord')
+  res.status(200);
+  res.send(JSON.stringify(records));
+});
+
 app.use(express.static(path.resolve(__dirname, '../app')));
 
 app.use('/', function (req, res){
-  res.sendFile(path.resolve(__dirname, '../app', 'index.html'))
+  res.send(path.resolve(__dirname, '../app', 'index.html'));
 })
 
 app.listen(port, function() {
