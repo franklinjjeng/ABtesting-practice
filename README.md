@@ -1,6 +1,6 @@
 Notes:
 Instances of visited color are tracked server side. Records will be destroyed after server restart.
-Records are posted into client side console after each POST request (on page load).
+Records are posted when selecting the menu item.
 
 
 ## Requirements
