@@ -1,0 +1,20 @@
+*.DS_Store
+.DS_Store
+**/*.DS_Store
+**/.DS_Store
+
+# Logs
+logs
+*.log
+
+# Runtime data
+pids
+*.pid
+*.seed
+
+# Dependency directorys
+node_modules/
+bower_components/
+
+src/db/documents
+src/db/pullRequests
