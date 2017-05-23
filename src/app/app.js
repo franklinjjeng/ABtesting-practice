@@ -103,10 +103,23 @@ var clearPage = function () {
 }
 
 var displayReport = function() {
+  $('body').append('<div class="report"></div>')
+  $('.report:last-child').append('<table class="report-table"></table>');
+  $('.report-table').append('<tr class="report-header"></tr>');
+  $('.report-header').append('<th>ID</th>');
+  $('.report-header').append('<th>Red views</th>');
+  $('.report-header').append('<th>Blue views</th>');
+  
   for (var key in records) {
-    var row = key + ' - ' + JSON.stringify(records[key]);
-    $('body').append('<div class="report">' + row + '</div>');
+    $('.report-table').append('<tr class="report-entry"></tr>');
+    $('.report-entry:last-child').append('<th>' + key + '</th>');
+    $('.report-entry:last-child').append('<th>' + records[key].red + '</th>');
+    $('.report-entry:last-child').append('<th>' + records[key].blue + '</th>');
   }
+
 }
+
+
+
 
 render(page);
