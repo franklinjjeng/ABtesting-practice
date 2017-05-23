@@ -68,7 +68,7 @@ var retrieveRecords = function() {
     success: function(res) {
       records = JSON.parse(res);
     }
-  });
+  }).done(displayReport);
 }
 
 $( ".home-menu" ).click(function() {
@@ -79,7 +79,6 @@ $( ".home-menu" ).click(function() {
 });
 
 $( ".report-menu" ).click(function() {
-  retrieveRecords();
   page = 'report';
   $("a").removeClass("selected");
   $( ".report-menu" ).addClass("selected");
@@ -93,7 +92,7 @@ var render = function(page) {
     ABsplit();
   } else if (page === 'report') {
     clearPage();
-    displayReport();
+    retrieveRecords();
   }
 }
 
