@@ -26,14 +26,14 @@ var ABsplit = function() {
     $.cookie('blue', 0);
   }
 
-  display(color);
+  displayBall(color);
   increment(color);
   updateRecords($.cookie());
 
   return;
 }
 
-var display = function(color) {
+var displayBall = function(color) {
 
   if (color === 'red') {
     $('.ball').append('<img src="' + redball + '">');
@@ -73,12 +73,16 @@ var retrieveRecords = function() {
 
 $( ".home-menu" ).click(function() {
   page = 'home';
+  $("a").removeClass("selected");
+  $( ".home-menu" ).addClass("selected");
   render(page);
 });
 
 $( ".report-menu" ).click(function() {
   retrieveRecords();
   page = 'report';
+  $("a").removeClass("selected");
+  $( ".report-menu" ).addClass("selected");
   render(page);
 });
 

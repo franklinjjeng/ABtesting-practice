@@ -1,7 +1,26 @@
-a {
-  cursor: pointer;
-}
-
 img {
   width: 20%;
+}
+
+.menu {
+  overflow: hidden;
+  background-color: #333;
+}
+
+.menu-item {
+  float: left;
+  cursor: pointer;
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+}
+
+.menu-item:hover {
+  background-color: #111;
+  color: gray;
+}
+
+.selected {
+  background-color: green;
 }
