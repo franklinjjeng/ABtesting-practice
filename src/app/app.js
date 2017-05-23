@@ -26,14 +26,14 @@ var ABsplit = function() {
     $.cookie('blue', 0);
   }
 
-  display(color);
+  displayBall(color);
   increment(color);
   updateRecords($.cookie());
 
   return;
 }
 
-var display = function(color) {
+var displayBall = function(color) {
 
   if (color === 'red') {
     $('.ball').append('<img src="' + redball + '">');
@@ -68,17 +68,20 @@ var retrieveRecords = function() {
     success: function(res) {
       records = JSON.parse(res);
     }
-  });
+  }).done(displayReport);
 }
 
 $( ".home-menu" ).click(function() {
   page = 'home';
+  $("a").removeClass("selected");
+  $( ".home-menu" ).addClass("selected");
   render(page);
 });
 
 $( ".report-menu" ).click(function() {
-  retrieveRecords();
   page = 'report';
+  $("a").removeClass("selected");
+  $( ".report-menu" ).addClass("selected");
   render(page);
 });
 
@@ -89,7 +92,7 @@ var render = function(page) {
     ABsplit();
   } else if (page === 'report') {
     clearPage();
-    displayReport();
+    retrieveRecords();
   }
 }
 
@@ -99,10 +102,23 @@ var clearPage = function () {
 }
 
 var displayReport = function() {
+  $('body').append('<div class="report"></div>')
+  $('.report').append('<table class="report-table"></table>');
+  $('.report-table').append('<tr class="report-header"></tr>');
+  $('.report-header').append('<th>ID</th>');
+  $('.report-header').append('<th>Red views</th>');
+  $('.report-header').append('<th>Blue views</th>');
+  
   for (var key in records) {
-    var row = key + ' - ' + JSON.stringify(records[key]);
-    $('body').append('<div class="report">' + row + '</div>');
+    $('.report-table').append('<tr class="report-entry"></tr>');
+    $('.report-entry:last-child').append('<td>' + key + '</td>');
+    $('.report-entry:last-child').append('<td>' + records[key].red + '</td>');
+    $('.report-entry:last-child').append('<td>' + records[key].blue + '</td>');
   }
+
 }
+
+
+
 
 render(page);
