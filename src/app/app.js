@@ -104,7 +104,7 @@ var clearPage = function () {
 
 var displayReport = function() {
   $('body').append('<div class="report"></div>')
-  $('.report:last-child').append('<table class="report-table"></table>');
+  $('.report').append('<table class="report-table"></table>');
   $('.report-table').append('<tr class="report-header"></tr>');
   $('.report-header').append('<th>ID</th>');
   $('.report-header').append('<th>Red views</th>');
@@ -112,9 +112,9 @@ var displayReport = function() {
   
   for (var key in records) {
     $('.report-table').append('<tr class="report-entry"></tr>');
-    $('.report-entry:last-child').append('<th>' + key + '</th>');
-    $('.report-entry:last-child').append('<th>' + records[key].red + '</th>');
-    $('.report-entry:last-child').append('<th>' + records[key].blue + '</th>');
+    $('.report-entry:last-child').append('<td>' + key + '</td>');
+    $('.report-entry:last-child').append('<td>' + records[key].red + '</td>');
+    $('.report-entry:last-child').append('<td>' + records[key].blue + '</td>');
   }
 
 }

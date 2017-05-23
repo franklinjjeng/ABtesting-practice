@@ -24,3 +24,18 @@ img {
 .selected {
   background-color: green;
 }
+
+.ball, .report {
+  margin: 20px;
+}
+
+table, tr, th, td {
+  border: 1px solid black;
+  border-collapse: collapse;
+  border-spacing: 0px;
+  padding: 10px;
+}
+
+.report-entry:nth-child(even) {
+    background-color: #dddddd;
+}
