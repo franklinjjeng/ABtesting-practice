@@ -57,9 +57,6 @@ var updateRecords = function(data) {
     dataType: 'json',
     success: function(res) {
       records = res;
-    },
-    xhrFields: {
-      'Access-Control-Allow-Credentials': true
     }
   });
 }
